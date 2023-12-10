@@ -1,0 +1,66 @@
+
+ 
+subprojects {
+apply plugin: 'java'
+apply plugin: 'maven'
+ 
+targetCompatibility = "11"
+sourceCompatibility = "11"
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+
+
+subprojects {
+    apply plugin: 'java'
+    
+	task listFiles(type: Exec) {
+	String src = System.getProperty("user.dir")+"\\t1"
+    workingDir = file(src) // Replace with your directory path
+    commandLine 'cmd', '/c', 'gradle init' // Windows specific command to list files
+    }
+    // Configure the jar task for each subproject
+    tasks.jar {
+        manifest {
+            attributes(
+                'Implementation-Title': "T1",
+                'Implementation-Version': "1.0",
+                 
+            )
+        }
+    }
+	build.dependsOn('listFiles')
+}
+
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    implementation
+}
+
+dependencies {
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.2'
+
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+
+
+
+}
+ println "Current Gradle version: " + gradle.gradleVersion
+ 
+ 
+
+
+
+task copyFile(type: Copy) {
+
+  from configurations.compileClasspath
+  into "./tmpdir"
+
+}
+build.dependsOn('copyFile')
+}
+
