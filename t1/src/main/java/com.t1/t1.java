@@ -1,4 +1,4 @@
-package main.com.t1;
+package com.t1;
 
 
 import org.apache.logging.log4j.LogManager;
