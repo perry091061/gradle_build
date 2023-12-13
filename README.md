@@ -23,3 +23,18 @@
             }
         }
     }
+// Define dependencies for projectA
+project(':projectA') {
+    dependencies {
+        implementation 'group:artifact:versionA' // Replace with projectA dependencies
+        // Add more dependencies specific to projectA as needed
+    }
+}
+
+// Define dependencies for projectB
+project(':projectB') {
+    dependencies {
+        implementation 'group:artifact:versionB' // Replace with projectB dependencies
+        // Add more dependencies specific to projectB as needed
+    }
+}
